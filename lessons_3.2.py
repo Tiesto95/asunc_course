@@ -14,11 +14,12 @@ try:
     buffer = b''
 
     while buffer[-2:] != b'\r\n':
-        data = server_socket.recv(2)
+        data = conection.recv(2)
         if not data:
             break
         else:
             buffer += data
-        print('Все полученные данные', buffer)
+    print('Все полученные данные', buffer)
+    conection.sendall(buffer)
 finally:
     server_socket.close()
